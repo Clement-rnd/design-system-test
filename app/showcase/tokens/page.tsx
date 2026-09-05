@@ -28,6 +28,44 @@ const SEMANTIC_TOKENS = [
   { name: "ring", pair: null },
 ]
 
+const FONT_FAMILIES = [
+  { name: "font-sans", var: "--font-sans", sample: "Geist Sans — texte courant" },
+  { name: "font-mono", var: "--font-geist-mono", sample: "Geist Mono — code, valeurs" },
+  { name: "font-heading", var: "--font-heading", sample: "Titres (= font-sans)" },
+]
+
+const FONT_SIZES = [
+  { name: "text-xs", var: "--text-xs" },
+  { name: "text-sm", var: "--text-sm" },
+  { name: "text-base", var: "--text-base" },
+  { name: "text-lg", var: "--text-lg" },
+  { name: "text-xl", var: "--text-xl" },
+  { name: "text-2xl", var: "--text-2xl" },
+  { name: "text-3xl", var: "--text-3xl" },
+  { name: "text-4xl", var: "--text-4xl" },
+  { name: "text-5xl", var: "--text-5xl" },
+  { name: "text-6xl", var: "--text-6xl" },
+]
+
+const FONT_WEIGHTS = [
+  { name: "font-normal", value: 400 },
+  { name: "font-medium", value: 500 },
+  { name: "font-semibold", value: 600 },
+  { name: "font-bold", value: 700 },
+]
+
+const SPACING_STEPS = [1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24, 32]
+
+const SHADOW_STEPS = [
+  "shadow-2xs",
+  "shadow-xs",
+  "shadow-sm",
+  "shadow-md",
+  "shadow-lg",
+  "shadow-xl",
+  "shadow-2xl",
+]
+
 const CHART_TOKENS = ["chart-1", "chart-2", "chart-3", "chart-4", "chart-5"]
 
 const SIDEBAR_TOKENS = [
@@ -157,6 +195,96 @@ export default function TokensPage() {
         </Section>
 
         <Section
+          id="typography"
+          title="Typography"
+          description="Familles, tailles et graisses de police disponibles (échelle par défaut de Tailwind CSS + polices Geist chargées dans layout.tsx)."
+        >
+          <div className="space-y-8">
+            <div>
+              <p className="mb-3 text-xs font-medium text-muted-foreground">
+                Familles
+              </p>
+              <div className="space-y-3">
+                {FONT_FAMILIES.map((f) => (
+                  <div key={f.name} className="flex items-baseline gap-4">
+                    <span
+                      className="w-32 shrink-0 text-lg"
+                      style={{ fontFamily: `var(${f.var})` }}
+                    >
+                      {f.sample}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      {f.name} — var({f.var})
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p className="mb-3 text-xs font-medium text-muted-foreground">
+                Tailles (text-xs → text-6xl)
+              </p>
+              <div className="space-y-3">
+                {FONT_SIZES.map((s) => (
+                  <div key={s.name} className="flex items-baseline gap-4">
+                    <span
+                      className="w-20 shrink-0 text-xs text-muted-foreground"
+                    >
+                      {s.name}
+                    </span>
+                    <span style={{ fontSize: `var(${s.var})` }}>
+                      Aa Design System
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p className="mb-3 text-xs font-medium text-muted-foreground">
+                Graisses
+              </p>
+              <div className="space-y-3">
+                {FONT_WEIGHTS.map((w) => (
+                  <div key={w.name} className="flex items-baseline gap-4">
+                    <span className="w-28 shrink-0 text-xs text-muted-foreground">
+                      {w.name} ({w.value})
+                    </span>
+                    <span className="text-lg" style={{ fontWeight: w.value }}>
+                      Aa Design System
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Section>
+
+        <Section
+          id="spacing"
+          title="Spacing"
+          description="Échelle d'espacement par défaut de Tailwind CSS, dérivée de l'unité --spacing (0.25rem)."
+        >
+          <div className="space-y-2">
+            {SPACING_STEPS.map((step) => (
+              <div key={step} className="flex items-center gap-4">
+                <span className="w-16 shrink-0 text-xs text-muted-foreground">
+                  spacing-{step}
+                </span>
+                <div
+                  className="h-4 rounded bg-primary"
+                  style={{ width: `calc(var(--spacing) * ${step})` }}
+                />
+                <span className="text-xs text-muted-foreground">
+                  {step * 0.25}rem
+                </span>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        <Section
           title="Sémantique — light"
           description="Tokens consommés par les composants shadcn, en thème clair. Chaque swatch référence une primitive via var()."
         >
@@ -242,6 +370,23 @@ export default function TokensPage() {
                 <p className="text-[11px] text-muted-foreground">
                   var({r.var})
                 </p>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        <Section
+          id="shadows"
+          title="Shadows"
+          description="Échelle d'ombres par défaut de Tailwind CSS."
+        >
+          <div className="flex flex-wrap gap-6">
+            {SHADOW_STEPS.map((s) => (
+              <div key={s} className="w-24 shrink-0 space-y-2 text-center">
+                <div
+                  className={`mx-auto h-16 w-16 rounded-lg bg-card ${s}`}
+                />
+                <p className="text-[11px] text-muted-foreground">{s}</p>
               </div>
             ))}
           </div>
