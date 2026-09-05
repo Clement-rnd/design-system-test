@@ -224,6 +224,90 @@ export default function TokensPage() {
         </Section>
 
         <Section
+          title="Sémantique · light"
+          description="Tokens consommés par les composants shadcn, en thème clair. Chaque swatch référence une primitive via var(). info/success/warning : couleurs par défaut en attendant les codes de la marque."
+        >
+          <div className="space-y-6">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+              {SEMANTIC_TOKENS.map((t) => (
+                <SemanticSwatch key={t.name} name={t.name} pair={t.pair} />
+              ))}
+            </div>
+            <div>
+              <p className="mb-2 text-xs font-medium text-muted-foreground">
+                Exemple d&apos;usage (composant Badge)
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {STATUS_BADGES.map((s) => (
+                  <Badge key={s.label} className={s.className}>
+                    {s.label}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Section>
+
+        <Section
+          title="Sémantique · dark"
+          description="Les mêmes tokens sémantiques, recalculés en thème sombre (classe .dark)."
+        >
+          <div className="dark grid grid-cols-2 gap-4 rounded-lg bg-background p-4 sm:grid-cols-3 md:grid-cols-4">
+            {SEMANTIC_TOKENS.map((t) => (
+              <SemanticSwatch key={t.name} name={t.name} pair={t.pair} />
+            ))}
+          </div>
+        </Section>
+
+        <Section
+          title="Chart & sidebar"
+          description="Tokens additionnels : couleurs de graphiques et thème de la sidebar (light à gauche, dark à droite)."
+        >
+          <div className="space-y-6">
+            <div>
+              <p className="mb-2 text-xs font-medium text-muted-foreground">
+                chart-1 → chart-5
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {CHART_TOKENS.map((c) => (
+                  <div key={c} className="w-20 shrink-0 space-y-1.5">
+                    <div
+                      className="h-14 w-full rounded-lg border border-border"
+                      style={{ backgroundColor: `var(--${c})` }}
+                    />
+                    <p className="text-center text-[11px] whitespace-nowrap text-muted-foreground">
+                      --{c}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-6">
+              <div>
+                <p className="mb-2 text-xs font-medium text-muted-foreground">
+                  Sidebar · light
+                </p>
+                <div className="grid grid-cols-2 gap-3">
+                  {SIDEBAR_TOKENS.map((t) => (
+                    <SemanticSwatch key={t.name} name={t.name} pair={t.pair} />
+                  ))}
+                </div>
+              </div>
+              <div className="dark rounded-lg bg-background p-4">
+                <p className="mb-2 text-xs font-medium text-muted-foreground">
+                  Sidebar · dark
+                </p>
+                <div className="grid grid-cols-2 gap-3">
+                  {SIDEBAR_TOKENS.map((t) => (
+                    <SemanticSwatch key={t.name} name={t.name} pair={t.pair} />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </Section>
+
+        <Section
           id="typography"
           title="Typography"
           description="Familles, tailles et graisses de police disponibles (échelle par défaut de Tailwind CSS + Inter et Geist Mono chargées dans layout.tsx)."
@@ -305,90 +389,6 @@ export default function TokensPage() {
                 </span>
               </div>
             ))}
-          </div>
-        </Section>
-
-        <Section
-          title="Sémantique · light"
-          description="Tokens consommés par les composants shadcn, en thème clair. Chaque swatch référence une primitive via var(). info/success/warning : couleurs par défaut en attendant les codes de la marque."
-        >
-          <div className="space-y-6">
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-              {SEMANTIC_TOKENS.map((t) => (
-                <SemanticSwatch key={t.name} name={t.name} pair={t.pair} />
-              ))}
-            </div>
-            <div>
-              <p className="mb-2 text-xs font-medium text-muted-foreground">
-                Exemple d&apos;usage (composant Badge)
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {STATUS_BADGES.map((s) => (
-                  <Badge key={s.label} className={s.className}>
-                    {s.label}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-          </div>
-        </Section>
-
-        <Section
-          title="Sémantique · dark"
-          description="Les mêmes tokens sémantiques, recalculés en thème sombre (classe .dark)."
-        >
-          <div className="dark grid grid-cols-2 gap-4 rounded-lg bg-background p-4 sm:grid-cols-3 md:grid-cols-4">
-            {SEMANTIC_TOKENS.map((t) => (
-              <SemanticSwatch key={t.name} name={t.name} pair={t.pair} />
-            ))}
-          </div>
-        </Section>
-
-        <Section
-          title="Chart & sidebar"
-          description="Tokens additionnels : couleurs de graphiques et thème de la sidebar (light à gauche, dark à droite)."
-        >
-          <div className="space-y-6">
-            <div>
-              <p className="mb-2 text-xs font-medium text-muted-foreground">
-                chart-1 → chart-5
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {CHART_TOKENS.map((c) => (
-                  <div key={c} className="w-20 shrink-0 space-y-1.5">
-                    <div
-                      className="h-14 w-full rounded-lg border border-border"
-                      style={{ backgroundColor: `var(--${c})` }}
-                    />
-                    <p className="text-center text-[11px] whitespace-nowrap text-muted-foreground">
-                      --{c}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-6">
-              <div>
-                <p className="mb-2 text-xs font-medium text-muted-foreground">
-                  Sidebar · light
-                </p>
-                <div className="grid grid-cols-2 gap-3">
-                  {SIDEBAR_TOKENS.map((t) => (
-                    <SemanticSwatch key={t.name} name={t.name} pair={t.pair} />
-                  ))}
-                </div>
-              </div>
-              <div className="dark rounded-lg bg-background p-4">
-                <p className="mb-2 text-xs font-medium text-muted-foreground">
-                  Sidebar · dark
-                </p>
-                <div className="grid grid-cols-2 gap-3">
-                  {SIDEBAR_TOKENS.map((t) => (
-                    <SemanticSwatch key={t.name} name={t.name} pair={t.pair} />
-                  ))}
-                </div>
-              </div>
-            </div>
           </div>
         </Section>
 
