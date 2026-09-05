@@ -10,7 +10,7 @@ import { COMPONENT_ITEMS, FOUNDATION_ITEMS } from "@/lib/showcase-nav"
 const NAV_GROUPS = [
   {
     label: "Foundations",
-    overviewHref: "/showcase/tokens",
+    overviewHref: "/showcase/foundations",
     items: FOUNDATION_ITEMS,
   },
   {
