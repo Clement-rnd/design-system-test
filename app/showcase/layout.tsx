@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import type { ReactNode } from "react"
+import { useEffect, useState, type ReactNode } from "react"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { ArrowRight01Icon } from "@hugeicons/core-free-icons"
 import { COMPONENT_ITEMS, FOUNDATION_ITEMS } from "@/lib/showcase-nav"
@@ -22,6 +22,16 @@ const NAV_GROUPS = [
 
 export default function ShowcaseLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname()
+  const [hash, setHash] = useState("")
+
+  useEffect(() => {
+    const syncHash = () => setHash(window.location.hash)
+    syncHash()
+    window.addEventListener("hashchange", syncHash)
+    return () => window.removeEventListener("hashchange", syncHash)
+  }, [pathname])
+
+  const currentUrl = pathname + hash
 
   return (
     <div className="flex min-h-screen">
@@ -32,6 +42,7 @@ export default function ShowcaseLayout({ children }: { children: ReactNode }) {
             <div key={group.label} className="mb-1">
               <Link
                 href={group.overviewHref}
+                onClick={() => setHash("")}
                 className={`flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs font-semibold tracking-wide uppercase hover:bg-sidebar-accent hover:text-sidebar-accent-foreground ${
                   groupActive
                     ? "text-sidebar-primary"
@@ -42,15 +53,26 @@ export default function ShowcaseLayout({ children }: { children: ReactNode }) {
                 {group.label}
               </Link>
               <div className="ml-2 flex flex-col gap-0.5 pl-3">
-                {group.items.map((item) => (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    className="rounded-md px-2 py-1 text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+                {group.items.map((item) => {
+                  const itemHash = "#" + (item.href.split("#")[1] ?? "")
+                  const itemActive =
+                    item.href === currentUrl ||
+                    (!hash && item.href.split("#")[0] === pathname && item === group.items[0])
+                  return (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      onClick={() => setHash(itemHash)}
+                      className={`rounded-md px-2 py-1 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground ${
+                        itemActive
+                          ? "bg-sidebar-accent font-medium text-sidebar-accent-foreground"
+                          : "text-sidebar-foreground/80"
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  )
+                })}
               </div>
             </div>
           )

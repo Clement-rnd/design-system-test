@@ -1,4 +1,6 @@
 import { Separator } from "@/components/ui/separator"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 
 const GRAY_STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
 const BRAND_STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900]
@@ -23,9 +25,18 @@ const SEMANTIC_TOKENS = [
   { name: "muted", pair: "muted-foreground" },
   { name: "accent", pair: "accent-foreground" },
   { name: "destructive", pair: null },
+  { name: "info", pair: "info-foreground" },
+  { name: "success", pair: "success-foreground" },
+  { name: "warning", pair: "warning-foreground" },
   { name: "border", pair: null },
   { name: "input", pair: null },
   { name: "ring", pair: null },
+]
+
+const STATUS_BADGES = [
+  { label: "Info", className: "bg-info text-info-foreground" },
+  { label: "Success", className: "bg-success text-success-foreground" },
+  { label: "Warning", className: "bg-warning text-warning-foreground" },
 ]
 
 const FONT_FAMILIES = [
@@ -98,9 +109,9 @@ function Section({
           <p className="text-sm text-muted-foreground">{description}</p>
         )}
       </div>
-      <div className="rounded-xl border border-border bg-card p-6">
-        {children}
-      </div>
+      <Card>
+        <CardContent>{children}</CardContent>
+      </Card>
       <Separator />
     </section>
   )
@@ -286,12 +297,26 @@ export default function TokensPage() {
 
         <Section
           title="Sémantique — light"
-          description="Tokens consommés par les composants shadcn, en thème clair. Chaque swatch référence une primitive via var()."
+          description="Tokens consommés par les composants shadcn, en thème clair. Chaque swatch référence une primitive via var(). info/success/warning : couleurs par défaut en attendant les codes de la marque."
         >
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-            {SEMANTIC_TOKENS.map((t) => (
-              <SemanticSwatch key={t.name} name={t.name} pair={t.pair} />
-            ))}
+          <div className="space-y-6">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+              {SEMANTIC_TOKENS.map((t) => (
+                <SemanticSwatch key={t.name} name={t.name} pair={t.pair} />
+              ))}
+            </div>
+            <div>
+              <p className="mb-2 text-xs font-medium text-muted-foreground">
+                Exemple d&apos;usage (composant Badge)
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {STATUS_BADGES.map((s) => (
+                  <Badge key={s.label} className={s.className}>
+                    {s.label}
+                  </Badge>
+                ))}
+              </div>
+            </div>
           </div>
         </Section>
 
