@@ -1,0 +1,197 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* ==========================================================================
+   NIVEAU 1 — PRIMITIVES
+   Palettes brutes, sans signification d'usage. Reprises telles quelles de
+   la palette neutre et rouge par défaut de Tailwind CSS / shadcn (base
+   color "neutral"). Ne jamais référencer ces variables directement dans
+   les composants : elles ne sont consommées que par le niveau sémantique.
+   ========================================================================== */
+:root {
+  --white: oklch(1 0 0);
+  --black: oklch(0 0 0);
+
+  --gray-50: oklch(0.985 0 0);
+  --gray-100: oklch(0.97 0 0);
+  --gray-200: oklch(0.922 0 0);
+  --gray-300: oklch(0.87 0 0);
+  --gray-400: oklch(0.708 0 0);
+  --gray-500: oklch(0.556 0 0);
+  --gray-600: oklch(0.439 0 0);
+  --gray-700: oklch(0.371 0 0);
+  --gray-800: oklch(0.269 0 0);
+  --gray-900: oklch(0.205 0 0);
+  --gray-950: oklch(0.145 0 0);
+
+  /* Aucune couleur de marque choisie pour l'instant : la palette "brand"
+     reprend provisoirement les valeurs neutres par défaut de shadcn, en
+     attendant qu'une identité de marque soit définie. */
+  --brand-50: oklch(0.985 0 0);
+  --brand-100: oklch(0.97 0 0);
+  --brand-200: oklch(0.922 0 0);
+  --brand-300: oklch(0.87 0 0);
+  --brand-400: oklch(0.708 0 0);
+  --brand-500: oklch(0.556 0 0);
+  --brand-600: oklch(0.439 0 0);
+  --brand-700: oklch(0.371 0 0);
+  --brand-800: oklch(0.269 0 0);
+  --brand-900: oklch(0.205 0 0);
+
+  --red-50: oklch(0.971 0.013 17.38);
+  --red-100: oklch(0.936 0.032 17.717);
+  --red-200: oklch(0.885 0.062 18.334);
+  --red-300: oklch(0.808 0.114 19.571);
+  --red-400: oklch(0.704 0.191 22.216);
+  --red-500: oklch(0.637 0.237 25.331);
+  --red-600: oklch(0.577 0.245 27.325);
+  --red-700: oklch(0.505 0.213 27.518);
+  --red-800: oklch(0.444 0.177 26.899);
+  --red-900: oklch(0.396 0.141 25.723);
+  --red-950: oklch(0.258 0.092 26.042);
+}
+
+/* ==========================================================================
+   NIVEAU 2 — SEMANTIQUE
+   Variables utilisées nativement par shadcn (background, foreground,
+   primary, secondary, muted, accent, destructive, border, input, ring...).
+   Elles ne portent plus de valeur HSL/OKLCH en dur : elles référencent
+   uniquement les primitives du niveau 1 ci-dessus.
+   ========================================================================== */
+:root {
+  --background: var(--white);
+  --foreground: var(--gray-950);
+  --card: var(--white);
+  --card-foreground: var(--gray-950);
+  --popover: var(--white);
+  --popover-foreground: var(--gray-950);
+  --primary: var(--gray-900);
+  --primary-foreground: var(--gray-50);
+  --secondary: var(--gray-100);
+  --secondary-foreground: var(--gray-900);
+  --muted: var(--gray-100);
+  --muted-foreground: var(--gray-500);
+  --accent: var(--gray-100);
+  --accent-foreground: var(--gray-900);
+  --destructive: var(--red-600);
+  --border: var(--gray-200);
+  --input: var(--gray-200);
+  --ring: var(--gray-400);
+  --chart-1: var(--gray-300);
+  --chart-2: var(--gray-500);
+  --chart-3: var(--gray-600);
+  --chart-4: var(--gray-700);
+  --chart-5: var(--gray-800);
+  --radius: 0.625rem;
+  --sidebar: var(--gray-50);
+  --sidebar-foreground: var(--gray-950);
+  --sidebar-primary: var(--gray-900);
+  --sidebar-primary-foreground: var(--gray-50);
+  --sidebar-accent: var(--gray-100);
+  --sidebar-accent-foreground: var(--gray-900);
+  --sidebar-border: var(--gray-200);
+  --sidebar-ring: var(--gray-400);
+}
+
+.dark {
+  --background: var(--gray-950);
+  --foreground: var(--gray-50);
+  --card: var(--gray-900);
+  --card-foreground: var(--gray-50);
+  --popover: var(--gray-900);
+  --popover-foreground: var(--gray-50);
+  --primary: var(--gray-200);
+  --primary-foreground: var(--gray-900);
+  --secondary: var(--gray-800);
+  --secondary-foreground: var(--gray-50);
+  --muted: var(--gray-800);
+  --muted-foreground: var(--gray-400);
+  --accent: var(--gray-800);
+  --accent-foreground: var(--gray-50);
+  --destructive: var(--red-400);
+  --border: oklch(from var(--white) l c h / 10%);
+  --input: oklch(from var(--white) l c h / 15%);
+  --ring: var(--gray-500);
+  --chart-1: var(--gray-300);
+  --chart-2: var(--gray-500);
+  --chart-3: var(--gray-600);
+  --chart-4: var(--gray-700);
+  --chart-5: var(--gray-800);
+  --sidebar: var(--gray-900);
+  --sidebar-foreground: var(--gray-50);
+  /* Accent historique du thème shadcn par défaut : ne correspond à aucune
+     primitive neutre/brand/destructive, conservé tel quel sans invention. */
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: var(--gray-50);
+  --sidebar-accent: var(--gray-800);
+  --sidebar-accent-foreground: var(--gray-50);
+  --sidebar-border: oklch(from var(--white) l c h / 10%);
+  --sidebar-ring: var(--gray-500);
+}
+
+/* ==========================================================================
+   NIVEAU 3 — COMPOSANT
+   Volontairement vide pour l'instant. N'ajouter un token ici que si un
+   composant a réellement besoin de dévier du niveau sémantique (ex :
+   --button-destructive-hover si le hover destructive doit différer de
+   --destructive). Nommage suggéré : --{composant}-{propriete}.
+   ========================================================================== */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}

@@ -1,0 +1,251 @@
+import { Separator } from "@/components/ui/separator"
+
+const GRAY_STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
+const BRAND_STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900]
+const RED_STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
+
+const RADIUS_STEPS = [
+  { name: "sm", var: "--radius-sm" },
+  { name: "md", var: "--radius-md" },
+  { name: "lg (base)", var: "--radius-lg" },
+  { name: "xl", var: "--radius-xl" },
+  { name: "2xl", var: "--radius-2xl" },
+  { name: "3xl", var: "--radius-3xl" },
+  { name: "4xl", var: "--radius-4xl" },
+]
+
+const SEMANTIC_TOKENS = [
+  { name: "background", pair: "foreground" },
+  { name: "card", pair: "card-foreground" },
+  { name: "popover", pair: "popover-foreground" },
+  { name: "primary", pair: "primary-foreground" },
+  { name: "secondary", pair: "secondary-foreground" },
+  { name: "muted", pair: "muted-foreground" },
+  { name: "accent", pair: "accent-foreground" },
+  { name: "destructive", pair: null },
+  { name: "border", pair: null },
+  { name: "input", pair: null },
+  { name: "ring", pair: null },
+]
+
+const CHART_TOKENS = ["chart-1", "chart-2", "chart-3", "chart-4", "chart-5"]
+
+const SIDEBAR_TOKENS = [
+  { name: "sidebar", pair: "sidebar-foreground" },
+  { name: "sidebar-primary", pair: "sidebar-primary-foreground" },
+  { name: "sidebar-accent", pair: "sidebar-accent-foreground" },
+  { name: "sidebar-border", pair: null },
+  { name: "sidebar-ring", pair: null },
+]
+
+function Section({
+  title,
+  description,
+  id,
+  children,
+}: {
+  title: string
+  description?: string
+  id?: string
+  children: React.ReactNode
+}) {
+  return (
+    <section
+      className="scroll-mt-20 space-y-4"
+      id={id ?? title.toLowerCase().replace(/\s+/g, "-")}
+    >
+      <div className="space-y-1">
+        <h2 className="text-xl font-semibold tracking-tight">{title}</h2>
+        {description && (
+          <p className="text-sm text-muted-foreground">{description}</p>
+        )}
+      </div>
+      <div className="rounded-xl border border-border bg-card p-6">
+        {children}
+      </div>
+      <Separator />
+    </section>
+  )
+}
+
+function ColorScale({
+  label,
+  prefix,
+  steps,
+}: {
+  label: string
+  prefix: string
+  steps: number[]
+}) {
+  return (
+    <div>
+      <p className="mb-2 text-xs font-medium text-muted-foreground">
+        {label}
+      </p>
+      <div className="flex flex-wrap gap-3">
+        {steps.map((step) => (
+          <div key={step} className="w-20 shrink-0 space-y-1.5">
+            <div
+              className="h-14 w-full rounded-lg border border-border"
+              style={{ backgroundColor: `var(--${prefix}-${step})` }}
+            />
+            <p className="text-center text-[11px] text-muted-foreground">
+              {prefix}-{step}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function SemanticSwatch({
+  name,
+  pair,
+}: {
+  name: string
+  pair: string | null
+}) {
+  return (
+    <div className="space-y-1.5">
+      <div
+        className="flex h-16 w-full items-center justify-center rounded-lg border border-border text-xs font-medium"
+        style={{
+          backgroundColor: `var(--${name})`,
+          color: pair ? `var(--${pair})` : "var(--foreground)",
+        }}
+      >
+        Aa
+      </div>
+      <p className="text-center text-[11px] text-muted-foreground">
+        --{name}
+        {pair ? ` / --${pair}` : ""}
+      </p>
+    </div>
+  )
+}
+
+export default function TokensPage() {
+  return (
+    <div className="space-y-12">
+      <header className="space-y-2">
+        <h1 className="text-3xl font-bold tracking-tight">Design Tokens</h1>
+        <p className="text-muted-foreground">
+          Aperçu des 3 niveaux de tokens définis dans{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+            app/globals.css
+          </code>
+          : primitives brutes, mapping sémantique (light/dark), et échelle
+          de radius.
+        </p>
+      </header>
+
+        <Section
+          id="colors"
+          title="Primitives — couleurs"
+          description="Palettes brutes du niveau 1. Non utilisées directement dans les composants — uniquement par les tokens sémantiques ci-dessous."
+        >
+          <div className="space-y-8">
+            <ColorScale label="gray-*" prefix="gray" steps={GRAY_STEPS} />
+            <ColorScale
+              label="brand-* (provisoire = copie du gris neutre, en attente d'une couleur de marque)"
+              prefix="brand"
+              steps={BRAND_STEPS}
+            />
+            <ColorScale label="red-* (destructive)" prefix="red" steps={RED_STEPS} />
+          </div>
+        </Section>
+
+        <Section
+          title="Sémantique — light"
+          description="Tokens consommés par les composants shadcn, en thème clair. Chaque swatch référence une primitive via var()."
+        >
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+            {SEMANTIC_TOKENS.map((t) => (
+              <SemanticSwatch key={t.name} name={t.name} pair={t.pair} />
+            ))}
+          </div>
+        </Section>
+
+        <Section
+          title="Sémantique — dark"
+          description="Les mêmes tokens sémantiques, recalculés en thème sombre (classe .dark)."
+        >
+          <div className="dark grid grid-cols-2 gap-4 rounded-lg bg-background p-4 sm:grid-cols-3 md:grid-cols-4">
+            {SEMANTIC_TOKENS.map((t) => (
+              <SemanticSwatch key={t.name} name={t.name} pair={t.pair} />
+            ))}
+          </div>
+        </Section>
+
+        <Section
+          title="Chart & sidebar"
+          description="Tokens additionnels : couleurs de graphiques et thème de la sidebar (light à gauche, dark à droite)."
+        >
+          <div className="space-y-6">
+            <div>
+              <p className="mb-2 text-xs font-medium text-muted-foreground">
+                chart-1 → chart-5
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {CHART_TOKENS.map((c) => (
+                  <div key={c} className="w-20 shrink-0 space-y-1.5">
+                    <div
+                      className="h-14 w-full rounded-lg border border-border"
+                      style={{ backgroundColor: `var(--${c})` }}
+                    />
+                    <p className="text-center text-[11px] text-muted-foreground">
+                      --{c}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-6">
+              <div>
+                <p className="mb-2 text-xs font-medium text-muted-foreground">
+                  Sidebar — light
+                </p>
+                <div className="grid grid-cols-2 gap-3">
+                  {SIDEBAR_TOKENS.map((t) => (
+                    <SemanticSwatch key={t.name} name={t.name} pair={t.pair} />
+                  ))}
+                </div>
+              </div>
+              <div className="dark rounded-lg bg-background p-4">
+                <p className="mb-2 text-xs font-medium text-muted-foreground">
+                  Sidebar — dark
+                </p>
+                <div className="grid grid-cols-2 gap-3">
+                  {SIDEBAR_TOKENS.map((t) => (
+                    <SemanticSwatch key={t.name} name={t.name} pair={t.pair} />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </Section>
+
+        <Section
+          id="radius"
+          title="Radius"
+          description="Échelle dérivée de --radius (0.625rem) via calc(). Modifier --radius met à jour toute l'échelle."
+        >
+          <div className="flex flex-wrap gap-4">
+            {RADIUS_STEPS.map((r) => (
+              <div key={r.name} className="w-24 shrink-0 space-y-1.5 text-center">
+                <div
+                  className="mx-auto h-16 w-16 border-2 border-foreground bg-muted"
+                  style={{ borderRadius: `var(${r.var})` }}
+                />
+                <p className="text-[11px] font-medium">{r.name}</p>
+                <p className="text-[11px] text-muted-foreground">
+                  var({r.var})
+                </p>
+              </div>
+            ))}
+          </div>
+        </Section>
+    </div>
+  )
+}
