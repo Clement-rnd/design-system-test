@@ -43,7 +43,7 @@ const STATUS_BADGES = [
 ]
 
 const FONT_FAMILIES = [
-  { name: "font-sans", var: "--font-sans", sample: "Geist Sans — texte courant" },
+  { name: "font-sans", var: "--font-sans", sample: "Inter — texte courant" },
   { name: "font-mono", var: "--font-geist-mono", sample: "Geist Mono — code, valeurs" },
   { name: "font-heading", var: "--font-heading", sample: "Titres (= font-sans)" },
 ]
@@ -226,7 +226,7 @@ export default function TokensPage() {
         <Section
           id="typography"
           title="Typography"
-          description="Familles, tailles et graisses de police disponibles (échelle par défaut de Tailwind CSS + polices Geist chargées dans layout.tsx)."
+          description="Familles, tailles et graisses de police disponibles (échelle par défaut de Tailwind CSS + Inter et Geist Mono chargées dans layout.tsx)."
         >
           <div className="space-y-8">
             <div>
