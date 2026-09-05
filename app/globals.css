@@ -181,7 +181,7 @@
   --chart-4: var(--gray-700);
   --chart-5: var(--gray-800);
   --radius: 0.625rem;
-  --sidebar: var(--gray-50);
+  --sidebar: var(--white);
   --sidebar-foreground: var(--gray-950);
   --sidebar-primary: var(--gray-900);
   --sidebar-primary-foreground: var(--gray-50);
@@ -221,7 +221,7 @@
   --chart-3: var(--gray-600);
   --chart-4: var(--gray-700);
   --chart-5: var(--gray-800);
-  --sidebar: var(--gray-900);
+  --sidebar: var(--gray-950);
   --sidebar-foreground: var(--gray-50);
   /* Accent historique du thème shadcn par défaut : ne correspond à aucune
      primitive neutre/brand/destructive, conservé tel quel sans invention. */
