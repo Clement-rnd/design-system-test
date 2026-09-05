@@ -5,6 +5,9 @@ import { Badge } from "@/components/ui/badge"
 const GRAY_STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
 const BRAND_STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900]
 const RED_STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
+const BLUE_STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
+const GREEN_STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
+const AMBER_STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
 
 const RADIUS_STEPS = [
   { name: "sm", var: "--radius-sm" },
@@ -202,6 +205,21 @@ export default function TokensPage() {
               steps={BRAND_STEPS}
             />
             <ColorScale label="red-* (destructive)" prefix="red" steps={RED_STEPS} />
+            <ColorScale
+              label="blue-* (info — couleur par défaut, en attente du code de marque)"
+              prefix="blue"
+              steps={BLUE_STEPS}
+            />
+            <ColorScale
+              label="green-* (success — couleur par défaut, en attente du code de marque)"
+              prefix="green"
+              steps={GREEN_STEPS}
+            />
+            <ColorScale
+              label="amber-* (warning — couleur par défaut, en attente du code de marque)"
+              prefix="amber"
+              steps={AMBER_STEPS}
+            />
           </div>
         </Section>
 
