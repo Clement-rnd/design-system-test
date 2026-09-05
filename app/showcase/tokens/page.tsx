@@ -141,7 +141,7 @@ function ColorScale({
               className="h-14 w-full rounded-lg border border-border"
               style={{ backgroundColor: `var(--${prefix}-${step})` }}
             />
-            <p className="text-center text-[11px] text-muted-foreground">
+            <p className="text-center text-[11px] whitespace-nowrap text-muted-foreground">
               {prefix}-{step}
             </p>
           </div>
@@ -236,14 +236,11 @@ export default function TokensPage() {
               <div className="space-y-3">
                 {FONT_FAMILIES.map((f) => (
                   <div key={f.name} className="flex items-baseline gap-4">
-                    <span
-                      className="w-32 shrink-0 text-lg"
-                      style={{ fontFamily: `var(${f.var})` }}
-                    >
-                      {f.sample}
+                    <span className="w-32 shrink-0 text-xs whitespace-nowrap text-muted-foreground">
+                      {f.name}
                     </span>
-                    <span className="text-xs text-muted-foreground">
-                      {f.name} — var({f.var})
+                    <span className="text-lg" style={{ fontFamily: `var(${f.var})` }}>
+                      {f.sample}
                     </span>
                   </div>
                 ))}
@@ -257,9 +254,7 @@ export default function TokensPage() {
               <div className="space-y-3">
                 {FONT_SIZES.map((s) => (
                   <div key={s.name} className="flex items-baseline gap-4">
-                    <span
-                      className="w-20 shrink-0 text-xs text-muted-foreground"
-                    >
+                    <span className="w-20 shrink-0 text-xs whitespace-nowrap text-muted-foreground">
                       {s.name}
                     </span>
                     <span style={{ fontSize: `var(${s.var})` }}>
@@ -277,7 +272,7 @@ export default function TokensPage() {
               <div className="space-y-3">
                 {FONT_WEIGHTS.map((w) => (
                   <div key={w.name} className="flex items-baseline gap-4">
-                    <span className="w-28 shrink-0 text-xs text-muted-foreground">
+                    <span className="w-32 shrink-0 text-xs whitespace-nowrap text-muted-foreground">
                       {w.name} ({w.value})
                     </span>
                     <span className="text-lg" style={{ fontWeight: w.value }}>
@@ -298,7 +293,7 @@ export default function TokensPage() {
           <div className="space-y-2">
             {SPACING_STEPS.map((step) => (
               <div key={step} className="flex items-center gap-4">
-                <span className="w-16 shrink-0 text-xs text-muted-foreground">
+                <span className="w-20 shrink-0 text-xs whitespace-nowrap text-muted-foreground">
                   spacing-{step}
                 </span>
                 <div
@@ -365,7 +360,7 @@ export default function TokensPage() {
                       className="h-14 w-full rounded-lg border border-border"
                       style={{ backgroundColor: `var(--${c})` }}
                     />
-                    <p className="text-center text-[11px] text-muted-foreground">
+                    <p className="text-center text-[11px] whitespace-nowrap text-muted-foreground">
                       --{c}
                     </p>
                   </div>
@@ -404,13 +399,13 @@ export default function TokensPage() {
         >
           <div className="flex flex-wrap gap-4">
             {RADIUS_STEPS.map((r) => (
-              <div key={r.name} className="w-24 shrink-0 space-y-1.5 text-center">
+              <div key={r.name} className="w-28 shrink-0 space-y-1.5 text-center">
                 <div
                   className="mx-auto h-16 w-16 border-2 border-foreground bg-muted"
                   style={{ borderRadius: `var(${r.var})` }}
                 />
-                <p className="text-[11px] font-medium">{r.name}</p>
-                <p className="text-[11px] text-muted-foreground">
+                <p className="text-[11px] font-medium whitespace-nowrap">{r.name}</p>
+                <p className="text-[11px] whitespace-nowrap text-muted-foreground">
                   var({r.var})
                 </p>
               </div>
