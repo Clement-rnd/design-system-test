@@ -55,7 +55,7 @@
 }
 
 /* ==========================================================================
-   NIVEAU 1 — PRIMITIVES
+   NIVEAU 1 · PRIMITIVES
    Palettes brutes, sans signification d'usage. Reprises telles quelles de
    la palette neutre et rouge par défaut de Tailwind CSS / shadcn (base
    color "neutral"). Ne jamais référencer ces variables directement dans
@@ -104,7 +104,7 @@
   --red-950: oklch(0.258 0.092 26.042);
 
   /* Couleurs par défaut en attendant les codes définitifs de la marque
-     (info/success/warning) — reprises des palettes bleu/vert/ambre par
+     (info/success/warning) · reprises des palettes bleu/vert/ambre par
      défaut de Tailwind CSS, à remplacer quand les valeurs seront fournies. */
   --blue-50: oklch(0.97 0.014 254.604);
   --blue-100: oklch(0.932 0.032 255.585);
@@ -144,7 +144,7 @@
 }
 
 /* ==========================================================================
-   NIVEAU 2 — SEMANTIQUE
+   NIVEAU 2 · SEMANTIQUE
    Variables utilisées nativement par shadcn (background, foreground,
    primary, secondary, muted, accent, destructive, border, input, ring...).
    Elles ne portent plus de valeur HSL/OKLCH en dur : elles référencent
@@ -234,7 +234,7 @@
 }
 
 /* ==========================================================================
-   NIVEAU 3 — COMPOSANT
+   NIVEAU 3 · COMPOSANT
    Volontairement vide pour l'instant. N'ajouter un token ici que si un
    composant a réellement besoin de dévier du niveau sémantique (ex :
    --button-destructive-hover si le hover destructive doit différer de

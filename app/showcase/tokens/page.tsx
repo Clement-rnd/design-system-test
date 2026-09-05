@@ -43,8 +43,8 @@ const STATUS_BADGES = [
 ]
 
 const FONT_FAMILIES = [
-  { name: "font-sans", var: "--font-sans", sample: "Inter — texte courant" },
-  { name: "font-mono", var: "--font-geist-mono", sample: "Geist Mono — code, valeurs" },
+  { name: "font-sans", var: "--font-sans", sample: "Inter · texte courant" },
+  { name: "font-mono", var: "--font-geist-mono", sample: "Geist Mono · code, valeurs" },
   { name: "font-heading", var: "--font-heading", sample: "Titres (= font-sans)" },
 ]
 
@@ -194,8 +194,8 @@ export default function TokensPage() {
 
         <Section
           id="colors"
-          title="Primitives — couleurs"
-          description="Palettes brutes du niveau 1. Non utilisées directement dans les composants — uniquement par les tokens sémantiques ci-dessous."
+          title="Primitives · couleurs"
+          description="Palettes brutes du niveau 1. Non utilisées directement dans les composants · uniquement par les tokens sémantiques ci-dessous."
         >
           <div className="space-y-8">
             <ColorScale label="gray-*" prefix="gray" steps={GRAY_STEPS} />
@@ -206,17 +206,17 @@ export default function TokensPage() {
             />
             <ColorScale label="red-* (destructive)" prefix="red" steps={RED_STEPS} />
             <ColorScale
-              label="blue-* (info — couleur par défaut, en attente du code de marque)"
+              label="blue-* (info · couleur par défaut, en attente du code de marque)"
               prefix="blue"
               steps={BLUE_STEPS}
             />
             <ColorScale
-              label="green-* (success — couleur par défaut, en attente du code de marque)"
+              label="green-* (success · couleur par défaut, en attente du code de marque)"
               prefix="green"
               steps={GREEN_STEPS}
             />
             <ColorScale
-              label="amber-* (warning — couleur par défaut, en attente du code de marque)"
+              label="amber-* (warning · couleur par défaut, en attente du code de marque)"
               prefix="amber"
               steps={AMBER_STEPS}
             />
@@ -309,7 +309,7 @@ export default function TokensPage() {
         </Section>
 
         <Section
-          title="Sémantique — light"
+          title="Sémantique · light"
           description="Tokens consommés par les composants shadcn, en thème clair. Chaque swatch référence une primitive via var(). info/success/warning : couleurs par défaut en attendant les codes de la marque."
         >
           <div className="space-y-6">
@@ -334,7 +334,7 @@ export default function TokensPage() {
         </Section>
 
         <Section
-          title="Sémantique — dark"
+          title="Sémantique · dark"
           description="Les mêmes tokens sémantiques, recalculés en thème sombre (classe .dark)."
         >
           <div className="dark grid grid-cols-2 gap-4 rounded-lg bg-background p-4 sm:grid-cols-3 md:grid-cols-4">
@@ -370,7 +370,7 @@ export default function TokensPage() {
             <div className="grid grid-cols-2 gap-6">
               <div>
                 <p className="mb-2 text-xs font-medium text-muted-foreground">
-                  Sidebar — light
+                  Sidebar · light
                 </p>
                 <div className="grid grid-cols-2 gap-3">
                   {SIDEBAR_TOKENS.map((t) => (
@@ -380,7 +380,7 @@ export default function TokensPage() {
               </div>
               <div className="dark rounded-lg bg-background p-4">
                 <p className="mb-2 text-xs font-medium text-muted-foreground">
-                  Sidebar — dark
+                  Sidebar · dark
                 </p>
                 <div className="grid grid-cols-2 gap-3">
                   {SIDEBAR_TOKENS.map((t) => (
