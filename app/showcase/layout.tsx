@@ -43,10 +43,8 @@ export default function ShowcaseLayout({ children }: { children: ReactNode }) {
               <Link
                 href={group.overviewHref}
                 onClick={() => setHash("")}
-                className={`flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs font-semibold tracking-wide uppercase hover:bg-sidebar-accent hover:text-sidebar-accent-foreground ${
-                  groupActive
-                    ? "text-sidebar-primary"
-                    : "text-sidebar-foreground/70"
+                className={`flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs font-semibold tracking-wide uppercase text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground ${
+                  groupActive ? "bg-sidebar-accent/60" : ""
                 }`}
               >
                 <HugeiconsIcon icon={ArrowRight01Icon} size={14} aria-hidden />
